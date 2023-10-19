@@ -1,0 +1,31 @@
+ {
+        "family": "task-ahmed",
+        "networkMode": "awsvpc",
+        "executionRoleArn": "arn:aws:iam::318988877498:role/ecs-task-execution-role", 
+        "containerDefinitions": [
+            {
+                "name": "backend",
+                "image": "318988877498.dkr.ecr.us-west-2.amazonaws.com/privaterepo:latest",
+                "portMappings": [
+                    {
+                        "containerPort": 3000,
+                        "hostPort": 3000,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "entryPoint": [
+                    "sh",
+                    "-c"
+                ],
+                "command": [
+                     "--config=/etc/ecs/ecs-cloudwatch.yaml" 
+                ]
+            }
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "512",
+        "memory": "1024"
+}
